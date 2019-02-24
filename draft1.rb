@@ -20,7 +20,6 @@ File.open('organizations.json','r') do |file|
  my_hash = JSON.parse(contents)
 
  my_hash.each do |organization|
-  puts "ID: #{organization['_id']}"
-  puts "Name: #{organization['name']}"
+  puts "#{organization['_id']} | #{organization['name']}"
  end
 end
