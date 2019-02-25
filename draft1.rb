@@ -37,13 +37,13 @@ command = nil
 while command != 'quit'
   command = Readline.readline("> ", true)
   break if command.nil?
-  # execute the command
-end
 
-# Search Organizations for id 121
-selected = list.select{|org| org._id == 121}
-selected.each do |org|
-  org.each_pair do |key,value|
-    puts "#{key}\t\t#{value}"
+  # Search Organizations for id 121
+  selected = list.select{|org| org._id == 121}
+  selected.each do |org|
+    org.each_pair do |key,value|
+      puts "#{key}\t\t#{value}"
+    end
   end
 end
+
