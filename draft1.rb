@@ -31,6 +31,11 @@ def search(list)
   search_term = Readline.readline("Enter search term  ", true)
   search_value = Readline.readline("Enter search ID  ", true)
 
+  unless Organization.methods.include?(search_term)
+    puts "Search term not found"
+    return
+  end
+
   selected = list.select{|org| org[search_term] == search_value.to_i}
   selected.each do |org|
     org.each_pair do |key,value|
