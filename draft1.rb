@@ -35,7 +35,7 @@ puts "\n"
 
 command = nil
 while command != 'quit'
-  command = Readline.readline("> ", true)
+  command = Readline.readline(" ", true)
   break if command.nil?
 
   case command
