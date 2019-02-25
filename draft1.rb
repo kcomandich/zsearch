@@ -43,10 +43,10 @@ while command != 'quit'
 
   case command
   when '1'
-#    search_term = Readline.readline("Enter search term  ", true)
+    search_term = Readline.readline("Enter search term  ", true)
     search_value = Readline.readline("Enter search ID  ", true)
 
-    selected = list.select{|org| org._id == search_value.to_i}
+    selected = list.select{|org| org[search_term] == search_value.to_i}
     selected.each do |org|
       org.each_pair do |key,value|
         puts "#{key}\t\t#{value}"
