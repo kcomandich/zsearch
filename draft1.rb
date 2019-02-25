@@ -17,13 +17,7 @@ intro
 
 contents = ''
 
-File.open('organizations.json','r') do |file|
-file.readlines.each do |line|
-  contents += line
-end
-end
-
-hash_list = JSON.parse(contents)
+hash_list = JSON.parse(File.read('organizations.json'))
 list = []
 
 hash_list.each do |org|
