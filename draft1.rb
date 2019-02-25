@@ -15,8 +15,6 @@ end
 
 intro
 
-contents = ''
-
 hash_list = JSON.parse(File.read('organizations.json'))
 list = []
 
