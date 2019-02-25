@@ -30,12 +30,6 @@ end
 intro_text
 list = import_json
 
-list.each do |org|
-  puts "#{org._id} | #{org.name}"
-end
-
-puts "\n"
-
 command = nil
 while command != 'quit'
   command = Readline.readline(" ", true)
