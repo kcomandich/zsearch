@@ -40,8 +40,10 @@ while command != 'quit'
 
   case command
   when '1'
-    # Search Organizations for id 121
-    selected = list.select{|org| org._id == 121}
+#    search_term = Readline.readline("Enter search term  ", true)
+    search_value = Readline.readline("Enter search ID  ", true)
+
+    selected = list.select{|org| org._id == search_value.to_i}
     selected.each do |org|
       org.each_pair do |key,value|
         puts "#{key}\t\t#{value}"
