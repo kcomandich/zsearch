@@ -28,4 +28,7 @@ File.open('organizations.json','r') do |file|
   puts "#{org._id} | #{org.name}"
  end
 
+ # Search Organizations for id 121
+ puts list.select{|org| org._id == 121}
+
 end
