@@ -17,9 +17,15 @@ File.open('organizations.json','r') do |file|
    contents += line
  end
 
- my_hash = JSON.parse(contents)
+ hash_list = JSON.parse(contents)
+ list = []
 
- my_hash.each do |organization|
-  puts "#{organization['_id']} | #{organization['name']}"
+ hash_list.each do |org|
+  list << Struct.new(*(k = org.keys.map(&:to_sym))).new(*org.values)
  end
+
+ list.each do |org|
+  puts "#{org._id} | #{org.name}"
+ end
+
 end
