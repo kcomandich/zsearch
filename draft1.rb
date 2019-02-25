@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'json'
+require 'readline'
 
 puts "Welcome to Zendesk Search"
 puts "Type 'quit' to exit at any time, Press 'Enter' to continue"
@@ -30,6 +31,13 @@ list.each do |org|
 end
 
 puts "\n"
+
+command = nil
+while command != 'quit'
+  command = Readline.readline("> ", true)
+  break if command.nil?
+  # execute the command
+end
 
 # Search Organizations for id 121
 selected = list.select{|org| org._id == 121}
