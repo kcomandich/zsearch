@@ -2,6 +2,9 @@
 require 'json'
 require 'readline'
 
+# TODO validate the JSON file against this structure
+Organization = Struct.new(:_id, :url, :external_id, :name, :domain_names, :created_at, :details, :shared_tickets, :tags)
+
 def intro_text
   puts "Welcome to Zendesk Search"
   puts "Type 'quit' to exit at any time, Press 'Enter' to continue"
@@ -18,7 +21,7 @@ def import_json
   list = []
 
   hash_list.each do |org|
-    list << Struct.new(*(k = org.keys.map(&:to_sym))).new(*org.values)
+    list << Organization.new(*org.values)
   end
 
   return list
