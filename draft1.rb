@@ -2,21 +2,25 @@
 require 'json'
 require 'readline'
 
-puts "Welcome to Zendesk Search"
-puts "Type 'quit' to exit at any time, Press 'Enter' to continue"
-puts "\n\n"
-puts "\tSelect search options:"
-puts "\t * Press 1 to search Zendesk"
-puts "\t * Press 2 to view a list of searchable fields"
-puts "\t * Type 'quit' to exit"
-puts "\n\n"
+def intro
+  puts "Welcome to Zendesk Search"
+  puts "Type 'quit' to exit at any time, Press 'Enter' to continue"
+  puts "\n\n"
+  puts "\tSelect search options:"
+  puts "\t * Press 1 to search Zendesk"
+  puts "\t * Press 2 to view a list of searchable fields"
+  puts "\t * Type 'quit' to exit"
+  puts "\n\n"
+end
+
+intro
 
 contents = ''
 
 File.open('organizations.json','r') do |file|
- file.readlines.each do |line|
-   contents += line
- end
+file.readlines.each do |line|
+  contents += line
+end
 end
 
 hash_list = JSON.parse(contents)
@@ -46,4 +50,3 @@ selected.each do |org|
     puts "#{key}\t\t#{value}"
   end
 end
-
