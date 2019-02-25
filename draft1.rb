@@ -31,7 +31,7 @@ def search(list)
   search_term = Readline.readline("Enter search term  ", true)
   search_value = Readline.readline("Enter search ID  ", true)
 
-  unless Organization.methods.include?(search_term)
+  unless Organization.members.include?(search_term.to_sym)
     puts "Search term not found"
     return
   end
