@@ -2,7 +2,7 @@
 require 'json'
 require 'readline'
 
-def intro
+def intro_text
   puts "Welcome to Zendesk Search"
   puts "Type 'quit' to exit at any time, Press 'Enter' to continue"
   puts "\n\n"
@@ -13,14 +13,19 @@ def intro
   puts "\n\n"
 end
 
-intro
+def import_json
+  hash_list = JSON.parse(File.read('organizations.json'))
+  list = []
 
-hash_list = JSON.parse(File.read('organizations.json'))
-list = []
+  hash_list.each do |org|
+    list << Struct.new(*(k = org.keys.map(&:to_sym))).new(*org.values)
+  end
 
-hash_list.each do |org|
-  list << Struct.new(*(k = org.keys.map(&:to_sym))).new(*org.values)
+  return list
 end
+
+intro_text
+list = import_json
 
 list.each do |org|
   puts "#{org._id} | #{org.name}"
