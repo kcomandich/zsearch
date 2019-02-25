@@ -27,6 +27,18 @@ def import_json
   return list
 end
 
+def search(list)
+  search_term = Readline.readline("Enter search term  ", true)
+  search_value = Readline.readline("Enter search ID  ", true)
+
+  selected = list.select{|org| org[search_term] == search_value.to_i}
+  selected.each do |org|
+    org.each_pair do |key,value|
+      puts "#{key}\t\t#{value}"
+    end
+  end
+end
+
 intro_text
 list = import_json
 
@@ -37,15 +49,7 @@ while command != 'quit'
 
   case command
   when '1'
-    search_term = Readline.readline("Enter search term  ", true)
-    search_value = Readline.readline("Enter search ID  ", true)
-
-    selected = list.select{|org| org[search_term] == search_value.to_i}
-    selected.each do |org|
-      org.each_pair do |key,value|
-        puts "#{key}\t\t#{value}"
-      end
-    end
+    search(list)
   when '2'
     puts "This will list the searchable fields"
   end
