@@ -16,26 +16,26 @@ File.open('organizations.json','r') do |file|
  file.readlines.each do |line|
    contents += line
  end
-
- hash_list = JSON.parse(contents)
- list = []
-
- hash_list.each do |org|
-  list << Struct.new(*(k = org.keys.map(&:to_sym))).new(*org.values)
- end
-
- list.each do |org|
-  puts "#{org._id} | #{org.name}"
- end
-
- puts "\n"
-
- # Search Organizations for id 121
- selected = list.select{|org| org._id == 121}
- selected.each do |org|
-   org.each_pair do |key,value|
-     puts "#{key}\t\t#{value}"
-   end
- end
-
 end
+
+hash_list = JSON.parse(contents)
+list = []
+
+hash_list.each do |org|
+  list << Struct.new(*(k = org.keys.map(&:to_sym))).new(*org.values)
+end
+
+list.each do |org|
+  puts "#{org._id} | #{org.name}"
+end
+
+puts "\n"
+
+# Search Organizations for id 121
+selected = list.select{|org| org._id == 121}
+selected.each do |org|
+  org.each_pair do |key,value|
+    puts "#{key}\t\t#{value}"
+  end
+end
+
