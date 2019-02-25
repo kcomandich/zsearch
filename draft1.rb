@@ -56,7 +56,8 @@ while command != 'quit'
   when '1'
     search(list)
   when '2'
-    puts "This will list the searchable fields"
+    puts "Search Organizations with\n"
+    puts Organization.members
   end
 end
 
