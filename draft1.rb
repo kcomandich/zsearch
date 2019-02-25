@@ -44,20 +44,23 @@ def search(list)
   end
 end
 
-intro_text
-list = import_json
+def accept_commands(list)
+  command = nil
+  while command != 'quit'
+    command = Readline.readline(" ", true)
+    break if command.nil?
 
-command = nil
-while command != 'quit'
-  command = Readline.readline(" ", true)
-  break if command.nil?
-
-  case command
-  when '1'
-    search(list)
-  when '2'
-    puts "Search Organizations with\n"
-    puts Organization.members
+    case command
+    when '1'
+      search(list)
+    when '2'
+      puts "Search Organizations with\n"
+      puts Organization.members
+    end
   end
 end
+
+intro_text
+list = import_json
+accept_commands(list)
 
