@@ -6,6 +6,7 @@ $LOAD_PATH.push File.expand_path("../lib", __FILE__)
 require 'organization'
 require 'user'
 require 'ticket'
+require 'search'
 
 def intro_text
   puts "Welcome to Zendesk Search"
@@ -18,63 +19,8 @@ def intro_text
   puts "\n\n"
 end
 
-def import_organizations
-  hash_list = JSON.parse(File.read('organizations.json'))
-  list = []
-
-  hash_list.each do |org|
-    list << Organization.new(org)
-  end
-
-  return list
-end
-
-def choose_dataset(organizations)
-  dataset = Readline.readline("Select 1) Users or 2) Tickets or 3) Organizations\n ", true)
-  case dataset
-  when '1'
-#    return USERS
-  when '2'
-#    return TICKETS
-  when '3'
-    search_organizations(organizations)
-#  else
-    # TODO show error
-  end
-end
-
-def search_organizations(organizations)
-  search_term = Readline.readline("Enter search term  ", true)
-  search_value = Readline.readline("Enter search ID  ", true)
-
-  unless ORGANIZATION.include?(search_term.to_sym)
-    puts "Search term not found"
-    return
-  end
-
-  selected = organizations.select{|org| org.send(search_term) == search_value.to_i}
-  selected.each do |org|
-    org.display
-  end
-end
- 
-def accept_commands(organizations)
-  command = nil
-  while command != 'quit'
-    command = Readline.readline(" ", true)
-    break if command.nil?
-
-    case command
-    when '1'
-      choose_dataset(organizations)
-    when '2'
-      puts "Search Organizations with\n"
-      puts ORGANIZATION.each{|field| "#{field}\n"}
-    end
-  end
-end
-
 intro_text
-organizations = import_organizations
-accept_commands(organizations)
+search = Search.new
+search.import_organizations
+search.accept_commands
 
