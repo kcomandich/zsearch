@@ -4,13 +4,13 @@ require 'readline'
 
 ORGANIZATION = [ :_id, :url, :external_id, :name, :domain_names, :created_at, :details, :shared_tickets, :tags ]
 
-# TODO validate the JSON file against this structure
 class Organization
   attr_accessor *ORGANIZATION
-  def initialize(org_fields) 
+  def initialize(org) 
 
     ORGANIZATION.each do |attribute|
-     eval "@#{attribute} = org_fields[attribute.to_s]"
+      # TODO test that extraneous fields are ignored, and missing ones get set to null
+      eval "@#{attribute} = org[attribute.to_s]"
    end
   end
 
@@ -39,7 +39,6 @@ def import_json
   list = []
 
   hash_list.each do |org|
-    # TODO use my fixed list, so that extraneous fields are ignored, and missing ones get set to null
     list << Organization.new(org)
   end
 
