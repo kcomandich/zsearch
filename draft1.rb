@@ -5,8 +5,7 @@ require 'readline'
 $LOAD_PATH.push File.expand_path("../lib", __FILE__)
 require 'organization'
 require 'user'
-
-Ticket = Struct.new(:_id, :url, :external_id, :created_at, :type, :subject, :description, :priority, :status, :submitter_id, :assignee_id, :organization_id, :tags, :has_incidents, :due_at, :via)
+require 'ticket'
 
 def intro_text
   puts "Welcome to Zendesk Search"
