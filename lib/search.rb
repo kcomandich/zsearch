@@ -1,5 +1,14 @@
 class Search
 
+  def main_menu
+    puts "\n"
+    puts "\tSelect search options:"
+    puts "\t * Press 1 to search Zendesk"
+    puts "\t * Press 2 to view a list of searchable fields"
+    puts "\t * Type 'quit' to exit"
+    puts "\n"
+  end
+
   def import_organizations
     hash_list = JSON.parse(File.read('organizations.json'))
     @organizations = []
@@ -12,6 +21,7 @@ class Search
   def accept_commands
     command = nil
     while command != 'quit'
+      main_menu
       command = Readline.readline(" ", true)
       break if command.nil?
 
