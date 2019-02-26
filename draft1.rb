@@ -4,8 +4,8 @@ require 'readline'
 
 $LOAD_PATH.push File.expand_path("../lib", __FILE__)
 require 'organization'
+require 'user'
 
-User = Struct.new(:_id, :url, :external_id, :name, :alias, :created_at, :active, :verified, :shared, :locale, :timezone, :last_login_at, :email, :phone, :signature, :organization_id, :tags, :suspended, :role)
 Ticket = Struct.new(:_id, :url, :external_id, :created_at, :type, :subject, :description, :priority, :status, :submitter_id, :assignee_id, :organization_id, :tags, :has_incidents, :due_at, :via)
 
 def intro_text
