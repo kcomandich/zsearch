@@ -17,5 +17,7 @@ end
 intro_text
 search = Search.new
 search.import_organizations
+search.import_users
+search.import_tickets
 search.accept_commands
 
