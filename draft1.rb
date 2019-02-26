@@ -16,7 +16,7 @@ class Organization
 
   def display
     ORGANIZATION.each do |field|
-      puts "#{field}\t\t#{self.send(field)}"
+      printf "%-20s %s\n", field, self.send(field)
     end
   end
 end
