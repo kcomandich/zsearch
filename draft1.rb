@@ -18,7 +18,7 @@ def intro_text
   puts "\n\n"
 end
 
-def import_json
+def import_organizations
   hash_list = JSON.parse(File.read('organizations.json'))
   list = []
 
@@ -29,7 +29,21 @@ def import_json
   return list
 end
 
-def search(list)
+def choose_dataset(organizations)
+  dataset = Readline.readline("Select 1) Users or 2) Tickets or 3) Organizations\n ", true)
+  case dataset
+  when '1'
+#    return USERS
+  when '2'
+#    return TICKETS
+  when '3'
+    search_organizations(organizations)
+#  else
+    # TODO show error
+  end
+end
+
+def search_organizations(organizations)
   search_term = Readline.readline("Enter search term  ", true)
   search_value = Readline.readline("Enter search ID  ", true)
 
@@ -38,13 +52,13 @@ def search(list)
     return
   end
 
-  selected = list.select{|org| org.send(search_term) == search_value.to_i}
+  selected = organizations.select{|org| org.send(search_term) == search_value.to_i}
   selected.each do |org|
     org.display
   end
 end
  
-def accept_commands(list)
+def accept_commands(organizations)
   command = nil
   while command != 'quit'
     command = Readline.readline(" ", true)
@@ -52,7 +66,7 @@ def accept_commands(list)
 
     case command
     when '1'
-      search(list)
+      choose_dataset(organizations)
     when '2'
       puts "Search Organizations with\n"
       puts ORGANIZATION.each{|field| "#{field}\n"}
@@ -61,6 +75,6 @@ def accept_commands(list)
 end
 
 intro_text
-list = import_json
-accept_commands(list)
+organizations = import_organizations
+accept_commands(organizations)
 
