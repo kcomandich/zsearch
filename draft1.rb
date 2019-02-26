@@ -7,16 +7,11 @@ ORGANIZATION = [ :_id, :url, :external_id, :name, :domain_names, :created_at, :d
 # TODO validate the JSON file against this structure
 class Organization
   attr_accessor *ORGANIZATION
-  def initialize(_id, url, external_id, name, domain_names, created_at, details, shared_tickets, tags)
-    @_id = _id
-    @url = url
-    @external_id = external_id
-    @name = name
-    @domain_names = domain_names
-    @created_at = created_at
-    @details = details
-    @shared_tickets = shared_tickets
-    @tags = tags
+  def initialize(org_fields) 
+
+    ORGANIZATION.each do |attribute|
+     eval "@#{attribute} = org_fields[attribute.to_s]"
+   end
   end
 
   def display
@@ -44,7 +39,8 @@ def import_json
   list = []
 
   hash_list.each do |org|
-    list << Organization.new(*org.values)
+    # TODO use my fixed list, so that extraneous fields are ignored, and missing ones get set to null
+    list << Organization.new(org)
   end
 
   return list
