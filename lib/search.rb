@@ -97,6 +97,11 @@ class Search
     end
 
     selected = @tickets.select{|ticket| ticket.send(search_term) == search_value.to_i}
+
+    if selected.count == 0
+      puts "Search has no results"
+    end
+
     selected.each do |ticket|
       ticket.display
     end
@@ -112,6 +117,11 @@ class Search
     end
 
     selected = @organizations.select{|org| org.send(search_term) == search_value.to_i}
+
+    if selected.count == 0
+      puts "Search has no results"
+    end
+
     selected.each do |org|
       org.display
     end
