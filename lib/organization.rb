@@ -2,12 +2,12 @@ ORGANIZATION = [ :_id, :url, :external_id, :name, :domain_names, :created_at, :d
 
 class Organization
   attr_accessor *ORGANIZATION
-  def initialize(org) 
 
+  def initialize(org) 
     ORGANIZATION.each do |attribute|
       # TODO test that extraneous fields are ignored, and missing ones get set to null
       eval "@#{attribute} = org[attribute.to_s]"
-   end
+    end
   end
 
   def display
