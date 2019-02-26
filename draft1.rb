@@ -2,24 +2,9 @@
 require 'json'
 require 'readline'
 
-ORGANIZATION = [ :_id, :url, :external_id, :name, :domain_names, :created_at, :details, :shared_tickets, :tags ]
+$LOAD_PATH.push File.expand_path("../lib", __FILE__)
+require 'organization'
 
-class Organization
-  attr_accessor *ORGANIZATION
-  def initialize(org) 
-
-    ORGANIZATION.each do |attribute|
-      # TODO test that extraneous fields are ignored, and missing ones get set to null
-      eval "@#{attribute} = org[attribute.to_s]"
-   end
-  end
-
-  def display
-    ORGANIZATION.each do |field|
-      printf "%-20s %s\n", field, self.send(field)
-    end
-  end
-end
 User = Struct.new(:_id, :url, :external_id, :name, :alias, :created_at, :active, :verified, :shared, :locale, :timezone, :last_login_at, :email, :phone, :signature, :organization_id, :tags, :suspended, :role)
 Ticket = Struct.new(:_id, :url, :external_id, :created_at, :type, :subject, :description, :priority, :status, :submitter_id, :assignee_id, :organization_id, :tags, :has_incidents, :due_at, :via)
 
