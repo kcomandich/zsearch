@@ -59,6 +59,10 @@ class Search
       when '2'
         puts "Search Organizations with\n"
         puts ORGANIZATION.each{|field| "#{field}\n"}
+      when 'quit', 'exit'
+        break
+      else
+        error 'Invalid option'
       end
     end
   end
@@ -72,8 +76,8 @@ class Search
       search_tickets
     when '3'
       search_organizations
-  #  else
-      # TODO show error
+    else
+      error 'Invalid option'
     end
   end
 
