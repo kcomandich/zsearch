@@ -16,8 +16,8 @@ end
 
 intro_text
 search = Search.new
+search.import_tickets  # TODO have to be first because Users and Organizations look through them
 search.import_organizations
 search.import_users
-search.import_tickets
 search.accept_commands
 
