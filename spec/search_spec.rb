@@ -37,5 +37,17 @@ RSpec.describe Search do
       user1 = s.users[0]
       expect(user1.organizations.count).to be == 1
     end
+    it "gathers the user's submitted tickets" do
+      s = Search.new
+      s.import_users
+      user1 = s.users[0]
+      expect(user1.submitted_tickets.count).to be == 2
+    end
+    it "gathers the user's assigned tickets" do
+      s = Search.new
+      s.import_users
+      user1 = s.users[0]
+      expect(user1.assigned_tickets.count).to be == 2
+    end
   end
 end
