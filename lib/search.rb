@@ -1,4 +1,7 @@
 require 'json'
+require 'organization'
+require 'user'
+require 'ticket'
 
 RED = "\e[31m%s\e[0m"
 GREEN = "\e[32m%s\e[0m"

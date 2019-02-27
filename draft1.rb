@@ -2,9 +2,6 @@
 require 'readline'
 
 $LOAD_PATH.push File.expand_path("../lib", __FILE__)
-require 'organization'
-require 'user'
-require 'ticket'
 require 'search'
 
 def intro_text
