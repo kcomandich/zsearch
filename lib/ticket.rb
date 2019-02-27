@@ -1,3 +1,4 @@
+require 'json'
 require 'record'
 
 TICKET = [ :_id, :url, :external_id, :created_at, :type, :subject, :description, :priority, :status, :submitter_id, :assignee_id, :organization_id, :tags, :has_incidents, :due_at, :via ]
@@ -24,6 +25,11 @@ class Ticket < Record
     result.concat sprintf "%-20s", 'Assignee'
     result.concat @assignee.name
     result.concat "\n"
+  end
+
+  def self.import
+    hash_list = JSON.parse(File.read(@file))
+    return hash_list.map{|ticket| Ticket.new(ticket)}
   end
 end
 

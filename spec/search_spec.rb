@@ -37,7 +37,7 @@ RSpec.describe Search do
     end
   end
 
-  describe "#import_users" do
+  describe "#initialize" do
     it "gathers the user's organization" do
       s = Search.new
       user1 = s.users[0]

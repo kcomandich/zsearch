@@ -1,3 +1,4 @@
+require 'json'
 require 'record'
 
 ORGANIZATION = [ :_id, :url, :external_id, :name, :domain_names, :created_at, :details, :shared_tickets, :tags ]
@@ -21,5 +22,10 @@ class Organization < Record
     result.concat sprintf "%-20s", 'Tickets'
     result.concat @tickets.map{|item| item.subject }.join(', ')
     result.concat "\n"
+  end
+
+  def self.import
+    hash_list = JSON.parse(File.read(@file))
+    return hash_list.map{|org| Organization.new(org)}
   end
 end

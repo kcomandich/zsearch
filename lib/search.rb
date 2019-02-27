@@ -1,4 +1,3 @@
-require 'json'
 require 'organization'
 require 'user'
 require 'ticket'
@@ -17,12 +16,9 @@ class Search
     attr_accessor :users, :tickets, :organizations
 
   def initialize
-    @users = []
-    @tickets = []
-    @organizations = []
-    import_tickets
-    import_organizations
-    import_users
+    @tickets = Ticket.import
+    @organizations = Organization.import
+    @users = User.import
     import_associated_records
   end
 
@@ -43,30 +39,6 @@ class Search
     puts "\t * Press 2 to view a list of searchable fields"
     puts "\t * Type 'quit' to exit"
     puts "\n"
-  end
-
-  def import_users
-    hash_list = JSON.parse(File.read(User.file))
-
-    hash_list.each do |user|
-      @users << User.new(user)
-    end
-  end
-
-  def import_tickets
-    hash_list = JSON.parse(File.read(Ticket.file))
-
-    hash_list.each do |ticket|
-      @tickets << Ticket.new(ticket)
-    end
-  end
-
-  def import_organizations
-    hash_list = JSON.parse(File.read(Organization.file))
-
-    hash_list.each do |org|
-      @organizations << Organization.new(org)
-    end
   end
 
   def import_associated_records
