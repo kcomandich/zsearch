@@ -45,7 +45,7 @@ class Search
   end
 
   def import_users
-    hash_list = JSON.parse(File.read('users.json'))
+    hash_list = JSON.parse(File.read('data/users.json'))
 
     hash_list.each do |user|
       u = User.new(user)
@@ -59,7 +59,7 @@ class Search
   end
 
   def import_tickets
-    hash_list = JSON.parse(File.read('tickets.json'))
+    hash_list = JSON.parse(File.read('data/tickets.json'))
 
     hash_list.each do |ticket|
       @tickets << Ticket.new(ticket)
@@ -67,7 +67,7 @@ class Search
   end
 
   def import_organizations
-    hash_list = JSON.parse(File.read('organizations.json'))
+    hash_list = JSON.parse(File.read('data/organizations.json'))
 
     hash_list.each do |org|
       @organizations << Organization.new(org)
