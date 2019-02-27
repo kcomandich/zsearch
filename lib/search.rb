@@ -29,6 +29,12 @@ class Search
     return sprintf RED, "#{msg}\n"
   end
 
+  def intro_text
+    puts "Welcome to Zendesk Search"
+    puts "Type 'quit' to exit at any time"
+    puts "\n"
+  end
+
   def main_menu
     puts "\n"
     puts "\tSelect search options:"
@@ -69,6 +75,7 @@ class Search
   end
  
   def accept_commands
+    intro_text
     command = nil
     while command != 'quit'
       main_menu

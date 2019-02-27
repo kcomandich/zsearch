@@ -8,6 +8,13 @@ RSpec.describe Search do
     end
   end
 
+  describe "#intro_text" do
+    it 'welcomes the user' do
+      s = Search.new
+      expect { s.intro_text }.to output(/welcome/i).to_stdout
+    end
+  end
+
   describe "#main_menu" do
     it 'prints a list of options' do
       s = Search.new
