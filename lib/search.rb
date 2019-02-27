@@ -69,55 +69,19 @@ class Search
     dataset = Readline.readline("Select 1) Users or 2) Tickets or 3) Organizations\n ", true)
     case dataset
     when '1'
-      search_users
+      search_term = Readline.readline("Enter search term  ", true)
+      search_value = Readline.readline("Enter search ID  ", true)
+      User.find(search_term, search_value, @users)
     when '2'
-      search_tickets
+      search_term = Readline.readline("Enter search term  ", true)
+      search_value = Readline.readline("Enter search ID  ", true)
+      Ticket.find(search_term, search_value, @tickets)
     when '3'
       search_term = Readline.readline("Enter search term  ", true)
       search_value = Readline.readline("Enter search ID  ", true)
       Organization.find(search_term, search_value, @organizations)
     else
       error 'Invalid option'
-    end
-  end
-
-  def search_users
-    search_term = Readline.readline("Enter search term  ", true)
-    search_value = Readline.readline("Enter search ID  ", true)
-
-    unless USER.include?(search_term.to_sym)
-      error "Search term not found"
-      return
-    end
-
-    selected = @users.select{|user| user.send(search_term) == search_value.to_i}
-
-    if selected.count == 0
-      error "No users match"
-    end
-
-    selected.each do |user|
-      user.display
-    end
-  end
-
-  def search_tickets
-    search_term = Readline.readline("Enter search term  ", true)
-    search_value = Readline.readline("Enter search ID  ", true)
-
-    unless TICKET.include?(search_term.to_sym)
-      error "Search term not found"
-      return
-    end
-
-    selected = @tickets.select{|ticket| ticket.send(search_term) == search_value.to_i}
-
-    if selected.count == 0
-      error "No tickets match"
-    end
-
-    selected.each do |ticket|
-      ticket.display
     end
   end
 end
