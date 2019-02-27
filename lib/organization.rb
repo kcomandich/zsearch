@@ -21,7 +21,7 @@ class Organization
   def self.find(search_term, search_value, organizations)
 
     unless ORGANIZATION.include?(search_term.to_sym)
-      Search.error "Search term not found"
+      STDERR.puts Search.error "Search term not found"
       return []
     end
 

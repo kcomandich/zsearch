@@ -19,7 +19,7 @@ class Ticket
   def self.find(search_term, search_value, tickets)
 
     unless TICKET.include?(search_term.to_sym)
-      return Search.error "Search term not found"
+      STDERR.puts Search.error "Search term not found"
       return []
     end
 

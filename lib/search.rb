@@ -72,7 +72,7 @@ class Search
       when 'quit', 'exit'
         break
       else
-        puts error 'Invalid option'
+        STDERR.puts error 'Invalid option'
       end
     end
   end
@@ -85,7 +85,7 @@ class Search
       search_value = Readline.readline("Enter search ID  ", true)
       u = User.find(search_term, search_value, @users)
       if u.count == 0
-        error "No users match"
+        return error "No users match"
       end
 
       u.each do |user|
@@ -95,7 +95,6 @@ class Search
       search_term = Readline.readline("Enter search term  ", true)
       search_value = Readline.readline("Enter search ID  ", true)
       t = Ticket.find(search_term, search_value, @tickets)
-
       if t.count == 0
         return error "No tickets match"
       end
@@ -108,13 +107,13 @@ class Search
       search_value = Readline.readline("Enter search ID  ", true)
       o = Organization.find(search_term, search_value, @organizations)
       if o.count == 0
-        error "No organizations match"
+        return error "No organizations match"
       end
       o.each do |org|
         puts org.display
       end
     else
-      puts error 'Invalid option'
+      STDERR.puts error 'Invalid option'
     end
   end
 end
