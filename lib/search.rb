@@ -67,6 +67,12 @@ class Search
       when '1'
         choose_dataset
       when '2'
+        puts "Search Users with\n"
+        puts USER.each{|field| "#{field}\n"}
+        puts '--------------------------------------'
+        puts "Search Tickets with\n"
+        puts TICKET.each{|field| "#{field}\n"}
+        puts '--------------------------------------'
         puts "Search Organizations with\n"
         puts ORGANIZATION.each{|field| "#{field}\n"}
       when 'quit', 'exit'
