@@ -32,6 +32,8 @@ class Search
       if u.organization_id
         u.organizations = Organization.find('_id', u.organization_id, @organizations)
       end
+      u.submitted_tickets = Ticket.find('submitter_id', u._id, @tickets)
+      u.assigned_tickets = Ticket.find('assignee_id', u._id, @tickets)
       @users << u
     end
   end
