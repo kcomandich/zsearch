@@ -2,6 +2,7 @@ class Record
   @expected_fields = []
   class << self
     attr_accessor :expected_fields
+    attr_accessor :file
   end
 
   def initialize(record)

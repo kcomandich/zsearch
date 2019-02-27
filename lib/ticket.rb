@@ -1,9 +1,11 @@
 require 'record'
 
 TICKET = [ :_id, :url, :external_id, :created_at, :type, :subject, :description, :priority, :status, :submitter_id, :assignee_id, :organization_id, :tags, :has_incidents, :due_at, :via ]
+TICKET_FILE = 'data/tickets.json'
 
 class Ticket < Record
   @expected_fields = TICKET
+  @file = TICKET_FILE
   attr_accessor *TICKET
   attr_accessor :submitter, :assignee, :organization
 
