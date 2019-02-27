@@ -17,6 +17,9 @@ class Search
     @users = []
     @tickets = []
     @organizations = []
+    import_tickets  # NOTE: these have to be first because Users and Organizations look through them
+    import_organizations
+    import_users
   end
 
   def self.error(msg)

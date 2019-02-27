@@ -24,6 +24,6 @@ class Record
       return []
     end
 
-    return list.select{|record| record.send(search_term).to_s == search_value}
+    return list.select{|record| record.send(search_term).to_s == search_value.to_s}
   end
 end
