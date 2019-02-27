@@ -4,8 +4,7 @@ GREEN = "\e[32m%s\e[0m"
 class Search
 
   def self.error(msg)
-    printf RED, msg
-    puts "\n"
+    return sprintf RED, "#{msg}\n"
   end
 
   def main_menu
@@ -60,7 +59,7 @@ class Search
       when 'quit', 'exit'
         break
       else
-        error 'Invalid option'
+        puts error 'Invalid option'
       end
     end
   end
@@ -71,17 +70,17 @@ class Search
     when '1'
       search_term = Readline.readline("Enter search term  ", true)
       search_value = Readline.readline("Enter search ID  ", true)
-      User.find(search_term, search_value, @users)
+      puts User.find(search_term, search_value, @users)
     when '2'
       search_term = Readline.readline("Enter search term  ", true)
       search_value = Readline.readline("Enter search ID  ", true)
-      Ticket.find(search_term, search_value, @tickets)
+      puts Ticket.find(search_term, search_value, @tickets)
     when '3'
       search_term = Readline.readline("Enter search term  ", true)
       search_value = Readline.readline("Enter search ID  ", true)
-      Organization.find(search_term, search_value, @organizations)
+      puts Organization.find(search_term, search_value, @organizations)
     else
-      error 'Invalid option'
+      puts error 'Invalid option'
     end
   end
 end

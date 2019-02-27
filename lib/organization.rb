@@ -11,9 +11,11 @@ class Organization
   end
 
   def display
+    result = ''
     ORGANIZATION.each do |field|
-      printf "%-20s %s\n", field, self.send(field)
+      result.concat sprintf "%-20s %s\n", field, self.send(field)
     end
+    return result
   end
 
   def self.find(search_term, search_value, organizations)
@@ -30,7 +32,7 @@ class Organization
     end
 
     selected.each do |org|
-      org.display
+      return org.display
     end
   end
 end

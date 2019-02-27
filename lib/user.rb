@@ -10,26 +10,28 @@ class User
   end
 
   def display
+    result = ''
     USER.each do |field|
-      printf "%-20s %s\n", field, self.send(field)
+      result.concat sprintf "%-20s %s\n", field, self.send(field)
     end
+    return result
   end
 
   def self.find(search_term, search_value, users)
 
     unless USER.include?(search_term.to_sym)
-      error "Search term not found"
+      Search.error "Search term not found"
       return
     end
 
     selected = @users.select{|user| user.send(search_term) == search_value.to_i}
 
     if selected.count == 0
-      error "No users match"
+      Search.error "No users match"
     end
 
     selected.each do |user|
-      user.display
+      return user.display
     end
   end
 
