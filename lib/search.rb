@@ -88,7 +88,7 @@ class Search
     case dataset
     when '1'
       search_term = Readline.readline("Enter search term  ", true)
-      search_value = Readline.readline("Enter search ID  ", true)
+      search_value = Readline.readline("Enter search value  ", true)
       u = User.find(search_term, search_value, @users)
       if u.count == 0
         puts Search.error "No users match"
@@ -99,7 +99,7 @@ class Search
       end
     when '2'
       search_term = Readline.readline("Enter search term  ", true)
-      search_value = Readline.readline("Enter search ID  ", true)
+      search_value = Readline.readline("Enter search value  ", true)
       t = Ticket.find(search_term, search_value, @tickets)
       if t.count == 0
         puts Search.error "No tickets match"
@@ -110,7 +110,7 @@ class Search
       end
     when '3'
       search_term = Readline.readline("Enter search term  ", true)
-      search_value = Readline.readline("Enter search ID  ", true)
+      search_value = Readline.readline("Enter search value  ", true)
       o = Organization.find(search_term, search_value, @organizations)
       if o.count == 0
         puts Search.error "No organizations match"
