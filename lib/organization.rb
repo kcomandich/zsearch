@@ -7,6 +7,7 @@ ORGANIZATION_FILE = 'data/organizations.json'
 class Organization < Record
   @expected_fields = ORGANIZATION
   @file = ORGANIZATION_FILE
+  @record_name = 'Organizations'
   attr_accessor *ORGANIZATION
   attr_accessor :tickets, :users
 

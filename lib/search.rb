@@ -41,6 +41,12 @@ class Search
     puts "\n"
   end
 
+  def print_searchable_fields
+    User.searchable_fields
+    Ticket.searchable_fields
+    Organization.searchable_fields
+  end
+
   def import_associated_records
     @users.each do |user|
       user.organizations = Organization.find('_id', user.organization_id, @organizations)
@@ -72,14 +78,7 @@ class Search
       when '1'
         choose_dataset
       when '2'
-        puts "Search Users with\n"
-        puts USER.each{|field| "#{field}\n"}
-        puts '--------------------------------------'
-        puts "Search Tickets with\n"
-        puts TICKET.each{|field| "#{field}\n"}
-        puts '--------------------------------------'
-        puts "Search Organizations with\n"
-        puts ORGANIZATION.each{|field| "#{field}\n"}
+        print_searchable_fields
       when 'quit', 'exit'
         break
       else

@@ -7,6 +7,7 @@ TICKET_FILE = 'data/tickets.json'
 class Ticket < Record
   @expected_fields = TICKET
   @file = TICKET_FILE
+  @record_name = 'Tickets'
   attr_accessor *TICKET
   attr_accessor :submitter, :assignee, :organization
 

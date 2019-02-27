@@ -7,6 +7,7 @@ USER_FILE = 'data/users.json'
 class User < Record
   @expected_fields = USER
   @file = USER_FILE
+  @record_name = 'Users'
   attr_accessor *USER
   attr_accessor :organizations, :submitted_tickets, :assigned_tickets
 
