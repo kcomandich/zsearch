@@ -74,15 +74,36 @@ class Search
     when '1'
       search_term = Readline.readline("Enter search term  ", true)
       search_value = Readline.readline("Enter search ID  ", true)
-      puts User.find(search_term, search_value, @users)
+      u = User.find(search_term, search_value, @users)
+      if u.count == 0
+        error "No users match"
+      end
+
+      u.each do |user|
+        puts user.display
+      end
     when '2'
       search_term = Readline.readline("Enter search term  ", true)
       search_value = Readline.readline("Enter search ID  ", true)
-      puts Ticket.find(search_term, search_value, @tickets)
+      t = Ticket.find(search_term, search_value, @tickets)
+
+      if t.count == 0
+        return error "No tickets match"
+      end
+
+      t.each do |ticket|
+        puts ticket.display
+      end
     when '3'
       search_term = Readline.readline("Enter search term  ", true)
       search_value = Readline.readline("Enter search ID  ", true)
-      puts Organization.find(search_term, search_value, @organizations)
+      o = Organization.find(search_term, search_value, @organizations)
+      if o.count == 0
+        error "No organizations match"
+      end
+      o.each do |org|
+        puts org.display
+      end
     else
       puts error 'Invalid option'
     end

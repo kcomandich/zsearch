@@ -26,18 +26,10 @@ class User
 
     unless USER.include?(search_term.to_sym)
       Search.error "Search term not found"
-      return
+      return []
     end
 
-    selected = users.select{|user| user.send(search_term) == search_value.to_i}
-
-    if selected.count == 0
-      Search.error "No users match"
-    end
-
-    selected.each do |user|
-      return user.display
-    end
+    return users.select{|user| user.send(search_term) == search_value.to_i}
   end
 
 end

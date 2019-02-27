@@ -22,17 +22,9 @@ class Organization
 
     unless ORGANIZATION.include?(search_term.to_sym)
       Search.error "Search term not found"
-      return
+      return []
     end
 
-    selected = organizations.select{|org| org.send(search_term) == search_value.to_i}
-
-    if selected.count == 0
-      Search.error "No organizations match"
-    end
-
-    selected.each do |org|
-      return org.display
-    end
+    return organizations.select{|org| org.send(search_term) == search_value.to_i}
   end
 end
