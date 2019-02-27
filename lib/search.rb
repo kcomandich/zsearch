@@ -21,6 +21,10 @@ class Search
     @users = []
 
     hash_list.each do |user|
+      u = User.new(user)
+      if u.organization_id
+        u.organizations = Organization.find('_id', u.organization_id, @organizations)
+      end
       @users << User.new(user)
     end
   end

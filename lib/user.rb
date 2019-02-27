@@ -2,6 +2,7 @@ USER = [ :_id, :url, :external_id, :name, :alias, :created_at, :active, :verifie
 
 class User
   attr_accessor *USER
+  attr_accessor :organizations
 
   def initialize(user)
     USER.each do |attribute|
@@ -14,6 +15,7 @@ class User
     USER.each do |field|
       result.concat sprintf "%-20s %s\n", field, self.send(field)
     end
+    result.concat sprintf "%-20s %s\n", 'Organizations', organizations 
     return result
   end
 
@@ -24,7 +26,7 @@ class User
       return
     end
 
-    selected = @users.select{|user| user.send(search_term) == search_value.to_i}
+    selected = users.select{|user| user.send(search_term) == search_value.to_i}
 
     if selected.count == 0
       Search.error "No users match"
