@@ -77,9 +77,9 @@ class Search
     end
 
     @tickets.each do |ticket|
-      ticket.submitter = User.find('_id', ticket.submitter_id, @users)
-      ticket.assignee = User.find('_id', ticket.assignee_id, @users)
-      ticket.organization = Organization.find('_id', ticket.organization_id, @organizations)
+      ticket.submitter = User.find('_id', ticket.submitter_id, @users)[0]
+      ticket.assignee = User.find('_id', ticket.assignee_id, @users)[0]
+      ticket.organization = Organization.find('_id', ticket.organization_id, @organizations)[0]
     end
 
     @organizations.each do |org|
