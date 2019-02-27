@@ -26,7 +26,7 @@ class Organization
     selected = organizations.select{|org| org.send(search_term) == search_value.to_i}
 
     if selected.count == 0
-      Search.error "Search has no results"
+      Search.error "No organizations match"
     end
 
     selected.each do |org|

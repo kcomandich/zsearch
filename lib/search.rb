@@ -93,7 +93,7 @@ class Search
     selected = @users.select{|user| user.send(search_term) == search_value.to_i}
 
     if selected.count == 0
-      error "Search has no results"
+      error "No users match"
     end
 
     selected.each do |user|
@@ -113,7 +113,7 @@ class Search
     selected = @tickets.select{|ticket| ticket.send(search_term) == search_value.to_i}
 
     if selected.count == 0
-      error "Search has no results"
+      error "No tickets match"
     end
 
     selected.each do |ticket|
