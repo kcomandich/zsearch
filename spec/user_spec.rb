@@ -1,5 +1,4 @@
 require 'user'
-require 'search'
 
 RSpec.describe User do
 
