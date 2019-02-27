@@ -40,21 +40,24 @@ RSpec.describe Search do
   describe "#import_users" do
     it "gathers the user's organization" do
       s = Search.new
-      s.import_users
       user1 = s.users[0]
       expect(user1.organizations.count).to be == 1
     end
     it "gathers the user's submitted tickets" do
       s = Search.new
-      s.import_users
       user1 = s.users[0]
       expect(user1.submitted_tickets.count).to be == 2
     end
     it "gathers the user's assigned tickets" do
       s = Search.new
-      s.import_users
       user1 = s.users[0]
       expect(user1.assigned_tickets.count).to be == 2
+    end
+    it "gathers the ticket's two users" do
+      s = Search.new
+      ticket1 = s.tickets[0]
+      expect(ticket1.submitter.name).to eq("Elma Castro")
+      expect(ticket1.assignee.name).to eq("Harris Côpeland")
     end
   end
 end
