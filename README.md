@@ -19,11 +19,11 @@ Install
 
 First, install bundler:
 
-  gem install bundler
+`gem install bundler`
 
 Then get the dependencies:
 
-  bundle install
+`bundle install`
 
 
 Author
