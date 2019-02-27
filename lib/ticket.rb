@@ -22,7 +22,7 @@ class Ticket
       return Search.error "Search term not found"
     end
 
-    selected = @tickets.select{|ticket| ticket.send(search_term) == search_value.to_i}
+    selected = tickets.select{|ticket| ticket.send(search_term) == search_value.to_i}
 
     if selected.count == 0
       return Search.error "No tickets match"
