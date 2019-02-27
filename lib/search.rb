@@ -5,6 +5,11 @@ class Search
     @green = "\e[32m%s\e[0m"
   end
 
+  def error(msg)
+    printf @red, msg 
+    puts "\n"
+  end
+
   def main_menu
     puts "\n"
     puts "\tSelect search options:"
@@ -77,14 +82,14 @@ class Search
     search_value = Readline.readline("Enter search ID  ", true)
 
     unless USER.include?(search_term.to_sym)
-      puts @red % "Search term not found"
+      error "Search term not found"
       return
     end
 
     selected = @users.select{|user| user.send(search_term) == search_value.to_i}
 
     if selected.count == 0
-      puts @red % "Search has no results"
+      error "Search has no results"
     end
 
     selected.each do |user|
@@ -97,14 +102,14 @@ class Search
     search_value = Readline.readline("Enter search ID  ", true)
 
     unless TICKET.include?(search_term.to_sym)
-      puts @red % "Search term not found"
+      error "Search term not found"
       return
     end
 
     selected = @tickets.select{|ticket| ticket.send(search_term) == search_value.to_i}
 
     if selected.count == 0
-      puts @red % "Search has no results"
+      error "Search has no results"
     end
 
     selected.each do |ticket|
@@ -117,14 +122,14 @@ class Search
     search_value = Readline.readline("Enter search ID  ", true)
 
     unless ORGANIZATION.include?(search_term.to_sym)
-      puts @red % "Search term not found"
+      error "Search term not found"
       return
     end
 
     selected = @organizations.select{|org| org.send(search_term) == search_value.to_i}
 
     if selected.count == 0
-      puts @red % "Search has no results"
+      error "Search has no results"
     end
 
     selected.each do |org|
