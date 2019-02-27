@@ -8,7 +8,7 @@ class User < Record
   attr_accessor :organizations, :submitted_tickets, :assigned_tickets
 
   def initialize(user)
-    super(user)
+    super
     @organizations = user[organizations]
     @submitted_tickets = user[submitted_tickets]
     @assigned_tickets = user[assigned_tickets]

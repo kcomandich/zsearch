@@ -7,7 +7,7 @@ class Ticket < Record
   attr_accessor *TICKET
 
   def initialize(ticket)
-    super(ticket)
+    super
   end
 
   def display

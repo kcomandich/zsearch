@@ -7,7 +7,7 @@ class Organization < Record
   attr_accessor *ORGANIZATION
 
   def initialize(org) 
-    super(org)
+    super
     # TODO test that extraneous fields are ignored, and missing ones get set to null
   end
 
