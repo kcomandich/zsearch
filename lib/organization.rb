@@ -5,9 +5,19 @@ ORGANIZATION = [ :_id, :url, :external_id, :name, :domain_names, :created_at, :d
 class Organization < Record
   @expected_fields = ORGANIZATION
   attr_accessor *ORGANIZATION
+  attr_accessor :tickets, :users
 
   def initialize(org) 
     super
-    # TODO test that extraneous fields are ignored, and missing ones get set to null
+  end
+
+  def display
+    result = super
+    result.concat sprintf "%-20s", 'Users'
+    result.concat @users.map{|item| item.name }.join(', ')
+    result.concat "\n"
+    result.concat sprintf "%-20s", 'Tickets'
+    result.concat @tickets.map{|item| item.subject }.join(', ')
+    result.concat "\n"
   end
 end

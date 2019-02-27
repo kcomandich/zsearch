@@ -20,9 +20,10 @@ class Search
     @users = []
     @tickets = []
     @organizations = []
-    import_tickets  # NOTE: these have to be first because Users and Organizations look through them
+    import_tickets
     import_organizations
     import_users
+    import_associated_records
   end
 
   def self.error(msg)
@@ -48,13 +49,7 @@ class Search
     hash_list = JSON.parse(File.read('data/users.json'))
 
     hash_list.each do |user|
-      u = User.new(user)
-      if u.organization_id
-        u.organizations = Organization.find('_id', u.organization_id, @organizations)
-      end
-      u.submitted_tickets = Ticket.find('submitter_id', u._id, @tickets)
-      u.assigned_tickets = Ticket.find('assignee_id', u._id, @tickets)
-      @users << u
+      @users << User.new(user)
     end
   end
 
@@ -73,7 +68,26 @@ class Search
       @organizations << Organization.new(org)
     end
   end
- 
+
+  def import_associated_records
+    @users.each do |user|
+      user.organizations = Organization.find('_id', user.organization_id, @organizations)
+      user.submitted_tickets = Ticket.find('submitter_id', user._id, @tickets)
+      user.assigned_tickets = Ticket.find('assignee_id', user._id, @tickets)
+    end
+
+    @tickets.each do |ticket|
+      ticket.submitter = User.find('_id', ticket.submitter_id, @users)
+      ticket.assignee = User.find('_id', ticket.assignee_id, @users)
+      ticket.organization = Organization.find('_id', ticket.organization_id, @organizations)
+    end
+
+    @organizations.each do |org|
+      org.tickets = Ticket.find('organization_id', org._id, @tickets)
+      org.users = User.find('organization_id', org._id, @users)
+    end
+  end
+
   def accept_commands
     intro_text
     command = nil

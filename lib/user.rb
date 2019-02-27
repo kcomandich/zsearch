@@ -9,9 +9,6 @@ class User < Record
 
   def initialize(user)
     super
-    @organizations = user[organizations]
-    @submitted_tickets = user[submitted_tickets]
-    @assigned_tickets = user[assigned_tickets]
   end
 
   def display
