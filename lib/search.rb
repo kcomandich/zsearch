@@ -73,7 +73,9 @@ class Search
     when '2'
       search_tickets
     when '3'
-      search_organizations
+      search_term = Readline.readline("Enter search term  ", true)
+      search_value = Readline.readline("Enter search ID  ", true)
+      Organization.find(search_term, search_value, @organizations)
     else
       error 'Invalid option'
     end
@@ -116,26 +118,6 @@ class Search
 
     selected.each do |ticket|
       ticket.display
-    end
-  end
-
-  def search_organizations
-    search_term = Readline.readline("Enter search term  ", true)
-    search_value = Readline.readline("Enter search ID  ", true)
-
-    unless ORGANIZATION.include?(search_term.to_sym)
-      error "Search term not found"
-      return
-    end
-
-    selected = @organizations.select{|org| org.send(search_term) == search_value.to_i}
-
-    if selected.count == 0
-      error "Search has no results"
-    end
-
-    selected.each do |org|
-      org.display
     end
   end
 end
