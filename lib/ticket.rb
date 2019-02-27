@@ -23,7 +23,7 @@ class Ticket
       return []
     end
 
-    return tickets.select{|ticket| ticket.send(search_term) == search_value.to_i}
+    return tickets.select{|ticket| ticket.send(search_term).to_s == search_value}
   end
 end
 

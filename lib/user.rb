@@ -38,7 +38,7 @@ class User
       return []
     end
 
-    return users.select{|user| user.send(search_term) == search_value.to_i}
+    return users.select{|user| user.send(search_term).to_s == search_value}
   end
 
 end

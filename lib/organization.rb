@@ -25,6 +25,6 @@ class Organization
       return []
     end
 
-    return organizations.select{|org| org.send(search_term) == search_value.to_i}
+    return organizations.select{|org| org.send(search_term).to_s == search_value}
   end
 end
