@@ -48,11 +48,11 @@ Type 'quit' to exit at any time
 	 * Press 2 to view a list of searchable fields
 	 * Type 'quit' to exit
 
- 1
+> 1
 Select 1) Users or 2) Tickets or 3) Organizations
- 1
-Enter search term  _id
-Enter search value  1
+> 1
+Enter search term > _id
+Enter search value > 1
 _id                  1
 url                  http://initech.zendesk.com/api/v2/users/1.json
 external_id          74341f74-9c79-49d5-9611-87ef9b6eb75f
