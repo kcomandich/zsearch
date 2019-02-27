@@ -25,7 +25,7 @@ class Search
       if u.organization_id
         u.organizations = Organization.find('_id', u.organization_id, @organizations)
       end
-      @users << User.new(user)
+      @users << u
     end
   end
 

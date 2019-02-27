@@ -8,6 +8,7 @@ class User
     USER.each do |attribute|
       eval "@#{attribute} = user[attribute.to_s]"
     end
+    @organizations = user[organizations]
   end
 
   def display
@@ -15,7 +16,9 @@ class User
     USER.each do |field|
       result.concat sprintf "%-20s %s\n", field, self.send(field)
     end
-    result.concat sprintf "%-20s %s\n", 'Organizations', organizations 
+    result.concat sprintf "%-20s", 'Organizations'
+    result.concat @organizations.map{|o| o.name }.join(', ')
+    result.concat "\n"
     return result
   end
 
