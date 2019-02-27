@@ -10,13 +10,4 @@ class Organization < Record
     super
     # TODO test that extraneous fields are ignored, and missing ones get set to null
   end
-
-  def display
-    result = ''
-    ORGANIZATION.each do |field|
-      result.concat sprintf "%-20s %s\n", field, self.send(field)
-    end
-    return result
-  end
-
 end

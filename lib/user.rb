@@ -15,10 +15,7 @@ class User < Record
   end
 
   def display
-    result = ''
-    USER.each do |field|
-      result.concat sprintf "%-20s %s\n", field, self.send(field)
-    end
+    result = super
     result.concat sprintf "%-20s", 'Organizations'
     result.concat @organizations.map{|item| item.name }.join(', ')
     result.concat "\n"

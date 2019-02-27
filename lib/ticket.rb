@@ -9,14 +9,5 @@ class Ticket < Record
   def initialize(ticket)
     super
   end
-
-  def display
-    result = ''
-    TICKET.each do |field|
-      result.concat sprintf "%-20s %s\n", field, self.send(field)
-    end
-    return result
-  end
-
 end
 

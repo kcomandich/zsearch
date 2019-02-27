@@ -10,6 +10,14 @@ class Record
     end
   end
 
+  def display
+    result = ''
+    self.class.expected_fields.each do |field|
+      result.concat sprintf "%-20s %s\n", field, self.send(field)
+    end
+    return result
+  end
+
   def self.find(search_term, search_value, list)
     unless @expected_fields.include?(search_term.to_sym)
       STDERR.puts Search.error "Search term not found"
