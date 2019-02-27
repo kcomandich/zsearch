@@ -16,5 +16,10 @@ RSpec.describe Ticket do
       micronesia = Ticket.new( 'subject' => 'A Catastrophe in Micronesia' )
       expect(Ticket.find('subject', 'A Catastrophe in Korea (North)', [ korea, micronesia ])).to eq([ korea ])
     end
+
+    it 'returns tickets when searching for an empty description' do
+      korea = Ticket.new( 'subject' => 'A Catastrophe in Korea (North)', 'description' => '' )
+      expect(Ticket.find('description', '', [ korea ])).to eq([ korea ])
+    end
   end
 end
