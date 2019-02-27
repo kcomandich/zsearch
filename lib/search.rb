@@ -1,12 +1,10 @@
+RED = "\e[31m%s\e[0m"
+GREEN = "\e[32m%s\e[0m"
+
 class Search
 
-  def initialize
-    @red = "\e[31m%s\e[0m"
-    @green = "\e[32m%s\e[0m"
-  end
-
-  def error(msg)
-    printf @red, msg 
+  def self.error(msg)
+    printf RED, msg
     puts "\n"
   end
 
