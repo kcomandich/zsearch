@@ -1,3 +1,5 @@
+require 'json'
+
 RED = "\e[31m%s\e[0m"
 GREEN = "\e[32m%s\e[0m"
 
@@ -9,6 +11,13 @@ GREEN = "\e[32m%s\e[0m"
 # Organizations have many users, through the user data
 
 class Search
+    attr_accessor :users, :tickets, :organizations
+
+  def initialize
+    @users = []
+    @tickets = []
+    @organizations = []
+  end
 
   def self.error(msg)
     return sprintf RED, "#{msg}\n"
@@ -25,7 +34,6 @@ class Search
 
   def import_users
     hash_list = JSON.parse(File.read('users.json'))
-    @users = []
 
     hash_list.each do |user|
       u = User.new(user)
@@ -40,7 +48,6 @@ class Search
 
   def import_tickets
     hash_list = JSON.parse(File.read('tickets.json'))
-    @tickets = []
 
     hash_list.each do |ticket|
       @tickets << Ticket.new(ticket)
@@ -49,7 +56,6 @@ class Search
 
   def import_organizations
     hash_list = JSON.parse(File.read('organizations.json'))
-    @organizations = []
 
     hash_list.each do |org|
       @organizations << Organization.new(org)

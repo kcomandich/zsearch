@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-require 'json'
 require 'readline'
 
 $LOAD_PATH.push File.expand_path("../lib", __FILE__)
