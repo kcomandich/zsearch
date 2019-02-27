@@ -9,15 +9,15 @@ RSpec.describe User do
     end
 
     it 'returns a list of users that match an integer search criteria' do
-      dot = User.new( '_id' => 1 )
-      hugh = User.new( '_id' =>  2 )
-      expect(User.find('_id', '2', [ dot, hugh ])).to eq([ hugh ])
+      francesca = User.new( '_id' => 1 )
+      cross = User.new( '_id' =>  2 )
+      expect(User.find('_id', '2', [ francesca, cross ])).to eq([ cross ])
     end
 
     it 'returns a list of users that match a string search criteria' do
-      dot = User.new( 'name' => 'Dot' )
-      hugh = User.new( 'name' => 'Hugh' )
-      expect(User.find('name', 'Dot', [ dot, hugh ])).to eq([ dot ])
+      francesca = User.new( 'name' => 'Francisca Rasmussen' )
+      cross = User.new( 'name' => 'Cross Barlow' )
+      expect(User.find('name', 'Francisca Rasmussen', [ francesca, cross ])).to eq([ francesca ])
     end
   end
 end
