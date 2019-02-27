@@ -1,6 +1,13 @@
 RED = "\e[31m%s\e[0m"
 GREEN = "\e[32m%s\e[0m"
 
+# Tickets have one submitter, one assignee
+# Tickets have one organization
+# Users have many tickets, through the ticket data
+# Users have one organization
+# Organizations have many tickets, through the ticket data
+# Organizations have many users, through the user data
+
 class Search
 
   def self.error(msg)
