@@ -11,6 +11,8 @@ Search through JSON files for user, organization, and ticket data
 Requirements
 ------------
 
+Tested with Ruby 2.6.1. Should work with Ruby 2.3.0+
+
 JSON files:
 * data/organizations.json
 * data/users.json
