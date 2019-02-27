@@ -35,7 +35,7 @@ Kirsten Comandich <kcomandich@gmail.com>
 License
 -------
 
-This program is provided under an MIT open source license, read the MIT-LICENSE.txt file for details.
+This program is provided under an MIT open source license, read the [MIT-LICENSE.txt](MIT-LICENSE.txt) file for details.
 
 
 Copyright
