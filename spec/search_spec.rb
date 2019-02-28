@@ -35,9 +35,7 @@ RSpec.describe Search do
       s = Search.new
       expect(s.tickets.count).to be > 0
     end
-  end
-
-  describe "#initialize" do
+    
     it "gathers the user's organization" do
       s = Search.new
       user1 = s.users[0]
