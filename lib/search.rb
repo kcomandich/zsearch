@@ -35,7 +35,9 @@ class Search
   def main_menu
     puts "\n"
     puts "\tSelect search options:"
-    puts "\t * Press 1 to search Zendesk"
+    puts "\t * 1 to search Users"
+    puts "\t * 2 to search Tickets"
+    puts "\t * 3 to search Organizations"
     puts "\t * Type 'quit' to exit"
     puts "\n"
   end
@@ -64,28 +66,19 @@ class Search
     command = nil
     while command != 'quit'
       main_menu
-      command = Readline.readline(" ", true)
-      break if command.nil?
 
-      case command
-      when '1'
-        choose_dataset
-      when 'quit', 'exit'
-        break
-      else
-        STDERR.puts Search.error 'Invalid option'
-      end
+      command = Readline.readline(" ", true)
+      break if %w[ quit exit ].include? command
+
+      choose_dataset(command)
     end
   end
 
-  def choose_dataset
-    dataset = Readline.readline("Select 1) Users or 2) Tickets or 3) Organizations\n ", true)
-
+  def choose_dataset(dataset)
     unless %w[ 1 2 3 ].include? dataset
       STDERR.puts Search.error 'Invalid option'
       return
     end
-
 
     case dataset
     when '1'
