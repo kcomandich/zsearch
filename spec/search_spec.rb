@@ -61,9 +61,14 @@ RSpec.describe Search do
   end
 
   describe "#accept_commands" do
-    it "quits when the user chooses to quit" do
+    it "quits when the user chooses quit" do
       s = Search.new
       allow(Readline).to receive(:readline).exactly(1).times.and_return('quit')
+      expect{s.accept_commands}.to output(/search options/).to_stdout
+    end
+    it "quits when the user chooses exit" do
+      s = Search.new
+      allow(Readline).to receive(:readline).exactly(1).times.and_return('exit')
       expect{s.accept_commands}.to output(/search options/).to_stdout
     end
   end
