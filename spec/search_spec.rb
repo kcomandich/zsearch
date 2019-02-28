@@ -72,4 +72,11 @@ RSpec.describe Search do
       expect{s.accept_commands}.to output(/search options/).to_stdout
     end
   end
+
+  describe "#choose_dataset" do
+    it "returns with an error if the user chooses an invalid option" do
+      s = Search.new
+      expect{s.choose_dataset('4')}.to output(a_string_including("Invalid")).to_stderr_from_any_process
+    end
+  end
 end
