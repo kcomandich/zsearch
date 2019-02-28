@@ -46,15 +46,19 @@ Type 'quit' to exit at any time
 
 
 	Select search options:
-	 * Press 1 to search Zendesk
-	 * Press 2 to view a list of searchable fields
+	 * 1 to search Users
+	 * 2 to search Tickets
+	 * 3 to search Organizations
 	 * Type 'quit' to exit
 
 > 1
-Select 1) Users or 2) Tickets or 3) Organizations
-> 1
+--------------------------------------
+Search Users with
+_id, url, external_id, name, alias, created_at, active, verified, shared, locale, timezone, last_login_at, email, phone, signature, organization_id, tags, suspended, role
+--------------------------------------
 Enter search term > _id
 Enter search value > 1
+--------------------------------------
 _id                  1
 url                  http://initech.zendesk.com/api/v2/users/1.json
 external_id          74341f74-9c79-49d5-9611-87ef9b6eb75f
@@ -77,6 +81,7 @@ role                 admin
 Organizations       Multron
 Submitted Tickets   A Nuisance in Kiribati, A Nuisance in Saint Lucia
 Assigned Tickets    A Problem in Russian Federation, A Problem in Malawi
+--------------------------------------
 ```
 
 
