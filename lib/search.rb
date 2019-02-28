@@ -89,41 +89,22 @@ class Search
 
   def choose_dataset
     dataset = Readline.readline("Select 1) Users or 2) Tickets or 3) Organizations\n ", true)
+
+    unless %w[ 1 2 3 ].include? dataset
+      STDERR.puts Search.error 'Invalid option'
+      return
+    end
+
+    search_term = Readline.readline("Enter search term  ", true)
+    search_value = Readline.readline("Enter search value  ", true)
+
     case dataset
     when '1'
-      search_term = Readline.readline("Enter search term  ", true)
-      search_value = Readline.readline("Enter search value  ", true)
-      u = User.find(search_term, search_value, @users)
-      if u.count == 0
-        puts Search.error "No users match"
-      end
-
-      u.each do |user|
-        puts user.display
-      end
+      User.find_and_display(search_term, search_value, @users)
     when '2'
-      search_term = Readline.readline("Enter search term  ", true)
-      search_value = Readline.readline("Enter search value  ", true)
-      t = Ticket.find(search_term, search_value, @tickets)
-      if t.count == 0
-        puts Search.error "No tickets match"
-      end
-
-      t.each do |ticket|
-        puts ticket.display
-      end
+      Ticket.find_and_display(search_term, search_value, @tickets)
     when '3'
-      search_term = Readline.readline("Enter search term  ", true)
-      search_value = Readline.readline("Enter search value  ", true)
-      o = Organization.find(search_term, search_value, @organizations)
-      if o.count == 0
-        puts Search.error "No organizations match"
-      end
-      o.each do |org|
-        puts org.display
-      end
-    else
-      STDERR.puts Search.error 'Invalid option'
+      Organization.find_and_display(search_term, search_value, @organizations)
     end
   end
 end

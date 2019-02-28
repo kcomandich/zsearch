@@ -33,4 +33,15 @@ class Record
     puts "Search #{@record_name} with\n"
     puts @expected_fields.each{|field| "#{field}\n"}
   end
+
+  def self.find_and_display(search_term, search_value, list)
+    results = self.find(search_term, search_value, list)
+    if results.count == 0
+      puts Search.error "No #{@record_name} Match"
+    end
+
+    results.each do |result|
+      puts result.display
+    end
+  end
 end
