@@ -76,7 +76,20 @@ RSpec.describe Search do
   describe "#choose_dataset" do
     it "returns with an error if the user chooses an invalid option" do
       s = Search.new
-      expect{s.choose_dataset('4')}.to output(a_string_including("Invalid")).to_stderr_from_any_process
+      expect{s.choose_dataset('4')}.to output(/Invalid/).to_stderr_from_any_process
+    end
+
+    it "returns an error and does no search if the search field is invalid" do
+      allow(Readline).to receive(:readline).exactly(2).times.and_return('frog', '9999')
+      allow(User).to receive(:display_searchable_fields)
+      s = Search.new
+      expect {s.choose_dataset('1')}.to output(/Search term not found/).to_stderr_from_any_process
+    end
+
+    it "displays no results if a correct search term is entered with a nonexistent value" do
+      allow(Readline).to receive(:readline).exactly(2).times.and_return('_id', '9999')
+      s = Search.new
+      expect {s.choose_dataset('1')}.to output(/No Users Match/).to_stdout
     end
 
     it "displays results if a correct search term and value is entered" do

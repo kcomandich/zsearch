@@ -20,11 +20,6 @@ class Record
   end
 
   def self.find(search_term, search_value, list)
-    unless @expected_fields.include?(search_term.to_sym)
-      STDERR.puts Search.error "Search term not found"
-      return []
-    end
-
     return list.select{|record| record.send(search_term).to_s == search_value.to_s}
   end
 
@@ -36,6 +31,11 @@ class Record
   end
 
   def self.find_and_display(search_term, search_value, list)
+    unless @expected_fields.include?(search_term.to_sym)
+      STDERR.puts Search.error "Search term not found"
+      return
+    end
+
     results = self.find(search_term, search_value, list)
     if results.count == 0
       puts Search.error "No #{@record_name} Match"
