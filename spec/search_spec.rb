@@ -78,5 +78,11 @@ RSpec.describe Search do
       s = Search.new
       expect{s.choose_dataset('4')}.to output(a_string_including("Invalid")).to_stderr_from_any_process
     end
+
+    it "displays results if a correct search term and value is entered" do
+      allow(Readline).to receive(:readline).exactly(2).times.and_return('_id', '1')
+      s = Search.new
+      expect {s.choose_dataset('1')}.to output(/Francisca Rasmussen/).to_stdout
+    end
   end
 end
