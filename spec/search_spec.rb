@@ -1,4 +1,5 @@
 require 'search'
+require 'readline'
 
 RSpec.describe Search do
 
@@ -56,6 +57,14 @@ RSpec.describe Search do
       ticket1 = s.tickets[0]
       expect(ticket1.submitter.name).to eq("Elma Castro")
       expect(ticket1.assignee.name).to eq("Harris Côpeland")
+    end
+  end
+
+  describe "#accept_commands" do
+    it "quits when the user chooses to quit" do
+      s = Search.new
+      allow(Readline).to receive(:readline).exactly(1).times.and_return('quit')
+      expect{s.accept_commands}.to output(/search options/).to_stdout
     end
   end
 end
