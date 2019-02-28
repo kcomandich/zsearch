@@ -12,7 +12,7 @@ class Record
   end
 
   def display
-    result = ''
+    result = '' 
     self.class.expected_fields.each do |field|
       result.concat sprintf "%-20s %s\n", field, self.send(field)
     end
@@ -42,7 +42,9 @@ class Record
     end
 
     results.each do |result|
+      puts "--------------------------------------\n"
       puts result.display
+      puts "--------------------------------------\n"
     end
   end
 end
