@@ -36,15 +36,8 @@ class Search
     puts "\n"
     puts "\tSelect search options:"
     puts "\t * Press 1 to search Zendesk"
-    puts "\t * Press 2 to view a list of searchable fields"
     puts "\t * Type 'quit' to exit"
     puts "\n"
-  end
-
-  def print_searchable_fields
-    User.searchable_fields
-    Ticket.searchable_fields
-    Organization.searchable_fields
   end
 
   def import_associated_records
@@ -77,8 +70,6 @@ class Search
       case command
       when '1'
         choose_dataset
-      when '2'
-        print_searchable_fields
       when 'quit', 'exit'
         break
       else
@@ -95,15 +86,22 @@ class Search
       return
     end
 
-    search_term = Readline.readline("Enter search term  ", true)
-    search_value = Readline.readline("Enter search value  ", true)
 
     case dataset
     when '1'
+      User.display_searchable_fields
+      search_term = Readline.readline("Enter search term  ", true)
+      search_value = Readline.readline("Enter search value  ", true)
       User.find_and_display(search_term, search_value, @users)
     when '2'
+      Ticket.display_searchable_fields
+      search_term = Readline.readline("Enter search term  ", true)
+      search_value = Readline.readline("Enter search value  ", true)
       Ticket.find_and_display(search_term, search_value, @tickets)
     when '3'
+      Organization.display_searchable_fields
+      search_term = Readline.readline("Enter search term  ", true)
+      search_value = Readline.readline("Enter search value  ", true)
       Organization.find_and_display(search_term, search_value, @organizations)
     end
   end

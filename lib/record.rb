@@ -28,10 +28,11 @@ class Record
     return list.select{|record| record.send(search_term).to_s == search_value.to_s}
   end
 
-  def self.searchable_fields
+  def self.display_searchable_fields
     puts '--------------------------------------'
     puts "Search #{@record_name} with\n"
-    puts @expected_fields.each{|field| "#{field}\n"}
+    puts @expected_fields.join(', ')
+    puts '--------------------------------------'
   end
 
   def self.find_and_display(search_term, search_value, list)
